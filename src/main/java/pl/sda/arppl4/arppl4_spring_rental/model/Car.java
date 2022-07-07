@@ -24,7 +24,7 @@ public class Car {
     private  BodyType bodyType;
     private Double numberOfSeats;
     @Enumerated(EnumType.STRING)
-    private  GearBox gearbox;
+    private  GearBox gearBox;
     private Double engineCapacity;
 
 }

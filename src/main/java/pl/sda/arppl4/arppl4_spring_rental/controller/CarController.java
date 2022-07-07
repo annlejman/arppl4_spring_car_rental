@@ -16,16 +16,29 @@ public class CarController {
     private final CarService carService;
 
     @GetMapping("/list")
-    public List<Car> getAllCars(){
+    public List<Car> getAllCars() {
         log.info("Wywołano listę aut.");
-        List<Car>list=carService.getAllCars();
+        List<Car> list = carService.getAllCars();
         return list;
     }
 
     @PostMapping("/add")
-    public void  addCar(@RequestBody Car car){
-        log.info("Wywołano dodanie auta: "+ car);
+    public void addCar(@RequestBody Car car) {
+        log.info("Wywołano dodanie auta: " + car);
         carService.addCar(car);
+
+    }
+
+    @DeleteMapping("/delete")
+    public void deleteCar(@PathVariable(name = "identifier") Long identyfikator) {
+        log.info("Wywołano usunięcie auta: " + identyfikator);
+        carService.deleteById(identyfikator);
+    }
+
+    @PatchMapping("/update")
+    public void updateCar(@RequestBody Car car) {
+        log.info("Wywołano aktualizację auta: " + car);
+        carService.updateCar(car);
 
     }
 }
