@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import pl.sda.arppl4.arppl4_spring_rental.model.Car;
+import pl.sda.arppl4.arppl4_spring_rental.model.dto.CarDTO;
 import pl.sda.arppl4.arppl4_spring_rental.service.CarService;
 
 import java.util.List;
@@ -16,9 +17,9 @@ public class CarController {
     private final CarService carService;
 
     @GetMapping("/list")
-    public List<Car> getAllCars() {
+    public List<CarDTO> getAllCars() {
         log.info("Wywołano listę aut.");
-        List<Car> list = carService.getAllCars();
+        List<CarDTO> list = carService.getAllCars();
         return list;
     }
 

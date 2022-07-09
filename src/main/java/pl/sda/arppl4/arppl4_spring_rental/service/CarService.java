@@ -6,9 +6,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import pl.sda.arppl4.arppl4_spring_rental.model.Car;
+import pl.sda.arppl4.arppl4_spring_rental.model.dto.CarDTO;
 import pl.sda.arppl4.arppl4_spring_rental.repository.ICarRepository;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,10 +20,17 @@ import java.util.Optional;
 public class CarService {
     private final ICarRepository iCarRepository;
 
-    public List<Car> getAllCars() {
-        return iCarRepository.findAll();
-    }
 
+    public List<CarDTO> getAllCars() {
+        List<Car> carList = iCarRepository.findAll();
+
+        List<CarDTO> cars = new ArrayList<>();
+        for (Car car : carList) {
+            cars.add(car.mapToCarDTO());
+        }
+
+        return cars;
+    }
     public void addCar(Car car) {
         iCarRepository.save(car);
     }
